@@ -1,3 +1,4 @@
 giotto-tda
 matplotlib
 numpy
+plotly
