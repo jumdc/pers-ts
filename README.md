@@ -1,6 +1,6 @@
 # pers-ts
 
-This repository follows the ideas introduced by the paper : [Topological Time Series Analysis, Jose Perea](https://arxiv.org/abs/1812.05143).
+This repository follows the ideas introduced by PhD Jose Perea in [Topological Time Series Analysis](https://arxiv.org/abs/1812.05143).
 
 ## Dynamic systems and Taken's embedding
 
