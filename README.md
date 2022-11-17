@@ -2,7 +2,7 @@
 
 This repository follows the ideas introduced by PhD Jose Perea in [Topological Time Series Analysis](https://arxiv.org/abs/1812.05143).
 
-## Dynamic systems and Taken's embedding
+## Dynamic systems and Takens' embedding
 
 **Definition of dynamical system**
 
@@ -22,9 +22,9 @@ Given two continuous maps, $\Phi : \phi : M \rightarrow{} M$ and $F : M \rightar
 we can define :
 $\phi_p : \mathbb{R} \rightarrow{} \mathbb{R}, t \rightarrow{}  F\circ\Phi$ the observation function. 
 
-Taken's embedding theorm aims to provide a theorical background to reconstructed the phase space $M$ from $\phi$.
+Takens' embedding theorm aims to provide a theorical background to reconstructed the phase space $M$ from $\phi$.
 
-**Taken's theorem** 
+**Takens' theorem** 
 
 Let's define an observation function : 
     given a continous map $\phi : M \rightarrow{} \mathbb{R} $
