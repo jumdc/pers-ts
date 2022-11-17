@@ -18,7 +18,7 @@ However, it is possible to define an *observation function*.
 
 **Definition of an observation function**
 
-Given two continuous maps, $\Phi : \phi : M \rightarrow{} M$ and $F : M \rightarrow{} \mathbb{R}$, 
+Given two continuous maps, $\Phi : M \rightarrow{} M$ and $F : M \rightarrow{} \mathbb{R}$, 
 we can define :
 $\phi_p : \mathbb{R} \rightarrow{} \mathbb{R}, t \rightarrow{}  F\circ\Phi$ the observation function. 
 
