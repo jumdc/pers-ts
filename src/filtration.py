@@ -76,8 +76,3 @@ class LevelFiltration:
         """Vectorization of the persistence."""
         pass
 
-if __name__ == "__main__":
-    filtration = LevelFiltration([0, 22, 0, 0, 15, 20, 0, 0, 0, 0])
-    filtration.compute_persistence()
-    filtration._plot_persistence_diagram()
-    filtration._plot_persistence_barcode()
