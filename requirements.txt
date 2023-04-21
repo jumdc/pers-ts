@@ -2,3 +2,4 @@ giotto-tda
 matplotlib
 numpy
 plotly
+gudhi
