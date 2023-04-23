@@ -6,10 +6,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-class LevelFiltration:
+class Filtration:
     """Class for Sub Level set filtration for 1-d Time Series"""
     def __init__(self, data):
-        """Initialization
+        """
+        Initialization
 
         Parameters
         ----------
@@ -30,10 +31,12 @@ class LevelFiltration:
                 [idx, idx+1], # 1-simplex
                 filtration=value
             )
+        self.data = data
         self.persistence = None
 
     def compute_persistence(self):
-        """Computes persistence
+        """
+        Computes persistence
         
         Parameters
         ----------
@@ -47,11 +50,16 @@ class LevelFiltration:
         """
         persistence = self.simplex.persistence()
         self.persistence = np.asarray(
-            [[ele[1][0], ele[1][1]] for ele in persistence if ele[1][1] < np.inf]
+            [
+                [ele[1][0], ele[1][1]] 
+                if ele[1][1] < np.inf else [ele[1][0], max(self.data)]
+                for ele in persistence 
+                ]
         )
 
     def _plot_persistence_diagram(self, path="figures/pd.png"):
-        """Plots persistence diagram
+        """
+        Plots persistence diagram
         
         Parameters
         ----------
@@ -60,6 +68,7 @@ class LevelFiltration:
         """
         gudhi.plot_persistence_diagram(self.persistence)
         plt.savefig(path)
+
 
     def _plot_persistence_barcode(self, path="figures/pb.png"):
         """Plots persistence barcode
