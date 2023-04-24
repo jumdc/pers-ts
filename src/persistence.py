@@ -90,8 +90,9 @@ class Persistence(BaseEstimator, TransformerMixin):
         )
         persistence = np.asarray(
             [
-                [ele[1][0], ele[1][1]] if ele[1][1] < np.inf else [ele[1][0], maxi]
+                [ele[1][0], ele[1][1]] 
                 for ele in persistence
+                if ele[1][1] < np.inf # else [ele[1][0], maxi]
             ]
         )
         return persistence

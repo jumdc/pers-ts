@@ -19,7 +19,7 @@ class TestPersistence(unittest.TestCase):
         persistence = Persistence()
         res = persistence.fit_transform(data)
 
-        gt = np.asarray([[1.0, 9], [4.0, 8.0], [6.0, 9.0]])
+        gt = np.asarray([[4.0, 8.0], [6.0, 9.0]])
         self.assertTrue(np.array_equal(res[0], gt))
 
     def test_persistence_several(self):
@@ -28,7 +28,7 @@ class TestPersistence(unittest.TestCase):
         res = persistence.fit_transform(data)
 
         gt = np.asarray(
-            [[[1.0, 9], [4.0, 8.0], [6.0, 9.0]], [[0.0, 8.0], [0.0, 8.0], [3.0, 4.0]]]
+            [[[4.0, 8.0], [6.0, 9.0]], [[0.0, 8.0], [3.0, 4.0]]]
         )
         self.assertTrue(np.array_equal(res, gt))
 
