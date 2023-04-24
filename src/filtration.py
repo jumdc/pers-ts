@@ -2,6 +2,7 @@
 
 
 import gudhi
+import gudhi.representations
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -57,7 +58,7 @@ class Filtration:
                 ]
         )
 
-    def _plot_persistence_diagram(self, path="figures/pd.png"):
+    def _plot_persistence_diagram(self, save=False, path="figures/pd.png"):
         """
         Plots persistence diagram
         
@@ -65,9 +66,12 @@ class Filtration:
         ----------
         path : str
             Path to save the plot
+        save : bool, optional
+            If True, saves the plot, by default False
         """
         gudhi.plot_persistence_diagram(self.persistence)
-        plt.savefig(path)
+        if save: 
+            plt.savefig(path)
 
 
     def _plot_persistence_barcode(self, path="figures/pb.png"):
@@ -81,7 +85,20 @@ class Filtration:
         gudhi.plot_persistence_barcode(self.persistence)
         plt.savefig(path)
 
-    def vectorize(self):
-        """Vectorization of the persistence."""
-        pass
+    def persistent_image(self,
+                        bandwidth=1,
+                        weight=lambda x: 1, # 
+                        resolution=[20,20] ):
+        """Compute the persistent image."""     
 
+        persistent_im_trf = gudhi.representations.vector_methods.PersistenceImage(
+            bandwidth=bandwidth, 
+            weight=weight, 
+            resolution=resolution
+        )
+        persistent_image = persistent_im_trf.fit_transform(
+            [self.persistence]
+        )
+        return persistent_image
+
+        
