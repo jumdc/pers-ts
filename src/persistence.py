@@ -85,9 +85,6 @@ class Persistence(BaseEstimator, TransformerMixin):
             List of persistence pairs
         """
         persistence = simplex.persistence()
-        maxi = max(
-            [filtration_val[1] for filtration_val in simplex.get_filtration()]
-        )
         persistence = np.asarray(
             [
                 [ele[1][0], ele[1][1]] 
