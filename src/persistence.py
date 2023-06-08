@@ -24,7 +24,6 @@ class Persistence(BaseEstimator, TransformerMixin):
         simplices : list
             List of simplices (n)
         """
-
         self.simplices = [self._create_simplex(to_filter) for to_filter in X]
         self.is_fitted = True
         return self
