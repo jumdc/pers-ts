@@ -92,3 +92,41 @@ class Persistence(BaseEstimator, TransformerMixin):
             ]
         )
         return persistence
+    
+    @staticmethod
+    def _get_persistence_barcode(simplex):
+        """
+        Computes persistence barcode
+
+        Parameters
+        ----------
+        graph : bool, optional
+            If True, plots persistence diagram and persistence barcode, by default False
+
+        Returns
+        -------
+        ax: plt.Axes
+            Axes of the plot
+        """
+        persistence = simplex.persistence()
+        ax = gudhi.plot_persistence_barcode(persistence)
+        return ax
+
+    @staticmethod
+    def _get_persistence_diagram(simplex):
+        """
+        Computes persistence diagram
+
+        Parameters
+        ----------
+        graph : bool, optional
+            If True, plots persistence diagram and persistence barcode, by default False
+
+        Returns
+        -------
+        ax: plt.Axes
+            Axes of the plot
+        """
+        persistence = simplex.persistence()
+        ax = gudhi.plot_persistence_diagram(persistence)
+        return ax
