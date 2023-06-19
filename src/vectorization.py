@@ -4,17 +4,9 @@ import gudhi.representations
 import numpy as np
 import pyrootutils
 
-root = pyrootutils.setup_root(
-    search_from=__file__,
-    indicator=[".git", "pyproject.toml"],
-    pythonpath=True,
-    dotenv=True,
-)
-
-from filtration import Filtration
-
 sys.path.append("/home/jmordacq/Documents/IRBA/dev/eulearning")
-from descriptor import EulerCharacteristicProfile
+
+from eulearning.descriptors import EulerCharacteristicProfile
 
 
 def _persistent_image(persitence_values, hyperparams):

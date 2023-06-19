@@ -1,7 +1,0 @@
-@software{eulearning,
-  author = {Hacquard, Olympio and Lebovici, Vadim},
-  title = {{Eulearning}\: {E}uler characteristic tools for topological data analysis},
-  url = {https://github.com/vadimlebovici/eulearning},
-  month = {3},
-  year = {2023}
-}

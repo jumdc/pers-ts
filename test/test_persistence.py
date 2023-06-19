@@ -11,7 +11,7 @@ root = pyrootutils.setup_root(
 )
 
 from src.filtration import Filtration
-
+from src.vectorization import _persistent_image, _betti_curve, _euler_curve
 
 class TestPersistence(unittest.TestCase):
     def test_persistence_one_data(self):
@@ -38,11 +38,7 @@ class TestPersistence(unittest.TestCase):
         persistence = Filtration()
         persistence.fit(data)
         vecs_st = persistence.vectorize()
-
-        # gt = np.asarray(
-        #     [[[4.0, 8.0], [6.0, 9.0]], [[0.0, 8.0], [3.0, 4.0]]]
-        # )
-        # self.assertTrue(np.array_equal(res, gt))
+        ecc = _euler_curve(vecs_st, hyperparams={"resolution": (200,)})
 
 if __name__ == "__main__":
     unittest.main()

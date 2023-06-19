@@ -1,21 +1,28 @@
 """Sub Level set filtration for 1-d Time Series"""
 import sys
+import pyrootutils
 import os
 import gudhi
 import numpy as np
 import gudhi.representations
 from sklearn.base import BaseEstimator, TransformerMixin
 
+root = pyrootutils.setup_root(
+    search_from=__file__,
+    indicator=[".git", "pyproject.toml"],
+    pythonpath=True,
+    dotenv=True,
+)
 
-sys.path.append("/home/jmordacq/Documents/IRBA/dev/")
-# import eulearning
+sys.path.append("/home/jmordacq/Documents/IRBA/dev/eulearning")
+from eulearning.utils import vectorize_st
+
 
 class Filtration(BaseEstimator, TransformerMixin):
     """Class for Sub Level set filtration for 1-d Time Series"""
 
     def __init__(self):
         """Initialization"""
-        print(os.listdir("."))
         self.simplices = None
         self.is_fitted = False
 
@@ -64,7 +71,7 @@ class Filtration(BaseEstimator, TransformerMixin):
     def vectorize(self):
         """vectorizes the simplices simplex tree"""
         vectoriations_st = [
-            eulearning.utils.vectorize_st(simplex) for simplex in self.simplices
+            vectorize_st(simplex) for simplex in self.simplices
         ]
         return vectoriations_st
 
