@@ -1,17 +1,21 @@
 """Sub Level set filtration for 1-d Time Series"""
-
-
+import sys
+import os
 import gudhi
 import numpy as np
 import gudhi.representations
 from sklearn.base import BaseEstimator, TransformerMixin
 
 
-class Persistence(BaseEstimator, TransformerMixin):
+sys.path.append("/home/jmordacq/Documents/IRBA/dev/")
+# import eulearning
+
+class Filtration(BaseEstimator, TransformerMixin):
     """Class for Sub Level set filtration for 1-d Time Series"""
 
     def __init__(self):
         """Initialization"""
+        print(os.listdir("."))
         self.simplices = None
         self.is_fitted = False
 
@@ -55,6 +59,14 @@ class Persistence(BaseEstimator, TransformerMixin):
         for idx, value in enumerate(data):
             simplex.insert([idx, idx + 1], filtration=value)  # 1-simplex
         return simplex
+    
+
+    def vectorize(self):
+        """vectorizes the simplices simplex tree"""
+        vectoriations_st = [
+            eulearning.utils.vectorize_st(simplex) for simplex in self.simplices
+        ]
+        return vectoriations_st
 
     def transform(self, X, y=None):
         """

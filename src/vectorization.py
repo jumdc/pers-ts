@@ -11,8 +11,10 @@ root = pyrootutils.setup_root(
     dotenv=True,
 )
 
-from src.persistence import Persistence
+from filtration import Filtration
 
+sys.path.append("/home/jmordacq/Documents/IRBA/dev/eulearning")
+from descriptor import EulerCharacteristicProfile
 
 
 def _persistent_image(persitence_values, hyperparams):
@@ -34,5 +36,12 @@ def _betti_curve(persistence_values, hyperparams):
         sample_range=hyperparams["sample_range"],
     )
     res = bc_transformer.fit_transform(persistence_values)
-
     return res
+
+
+def _euler_curve(vecs_st, hyperparams):
+    euler_curve = EulerCharacteristicProfile(resolution=(200,), quantiles=[(0, 0.95)], pt_cld=True, normalize=False)
+    ecc = euler_curve.fit_transform(vecs_st)
+    # # Plot Euler curves
+    # ecc_range = np.linspace(euler_curve.val_ranges[0][0], euler_curve.val_ranges[0][1], euler_curve.resolution[0])
+    return ecc
