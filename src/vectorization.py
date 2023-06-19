@@ -52,12 +52,20 @@ def _euler_curve(vecs_st, hyperparams):
         pt_cld=False, normalize=hyperparams['normalize']
     )
     ecc = trf.fit_transform(vecs_st)
-    # # Plot Euler curves
-    # ecc_range = np.linspace(euler_curve.val_ranges[0][0], euler_curve.val_ranges[0][1], euler_curve.resolution[0])
     return ecc, trf
 
 
 def _hybrid_transform(vecs_st, hyperparams):
+    """
+    Compute the hybrid transform of simplex trees
+
+    Parameters
+    ----------
+    vecs_st : list
+        List of vectorized simplex trees
+    hyperparams : dict
+        Dictionary of hyperparameters
+    """
     kernel = lambda x : np.exp(-x)
     trf = HybridTransform(
         resolution=hyperparams['resolution'], quantiles=hyperparams['quantiles'],
