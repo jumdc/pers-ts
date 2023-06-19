@@ -6,7 +6,7 @@ import pyrootutils
 
 sys.path.append("/home/jmordacq/Documents/IRBA/dev/eulearning")
 
-from eulearning.descriptors import EulerCharacteristicProfile
+from eulearning.descriptors import EulerCharacteristicProfile, HybridTransform
 
 
 def _persistent_image(persitence_values, hyperparams):
@@ -32,8 +32,37 @@ def _betti_curve(persistence_values, hyperparams):
 
 
 def _euler_curve(vecs_st, hyperparams):
-    euler_curve = EulerCharacteristicProfile(resolution=(200,), quantiles=[(0, 0.95)], pt_cld=True, normalize=False)
-    ecc = euler_curve.fit_transform(vecs_st)
+    """
+    Compute the Euler curve of a simplex trees
+
+    Parameters
+    ----------
+    vecs_st : list
+        List of vectorized simplex trees
+    hyperparams : dict
+        Dictionary of hyperparameters
+    
+    Returns
+    -------
+    ecc : list
+        List of Euler curves
+    """
+    trf = EulerCharacteristicProfile(
+        resolution=hyperparams['resolution'], quantiles=hyperparams['quantiles'], 
+        pt_cld=False, normalize=hyperparams['normalize']
+    )
+    ecc = trf.fit_transform(vecs_st)
     # # Plot Euler curves
     # ecc_range = np.linspace(euler_curve.val_ranges[0][0], euler_curve.val_ranges[0][1], euler_curve.resolution[0])
-    return ecc
+    return ecc, trf
+
+
+def _hybrid_transform(vecs_st, hyperparams):
+    kernel = lambda x : np.exp(-x)
+    trf = HybridTransform(
+        resolution=hyperparams['resolution'], quantiles=hyperparams['quantiles'],
+        pt_cld=False, normalize=hyperparams['normalize'], kernel_name=hyperparams['kernel_name']
+    )
+    ht = trf.fit_transform(vecs_st)
+    return ht, trf
+ 
